@@ -50,7 +50,7 @@
         virtual_router_id: 42
         # I advise you to define your own priority per node, instead of a generic all or nothing.
         # Especially if you have more than two nodes.
-        priority: "{{ inventory_hostname == groups['keepalived'][0] | ternary('250', '0') }}"
+        priority: "{{ (inventory_hostname == groups['keepalived'][0]) | ternary('250', '0') }}"
         # Do not forget to define the VIPs, and their CIDR.
         vips:
           - "192.168.33.2/24 dev {{ vrrp_nic | default('eth0') }}"
